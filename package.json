@@ -1,0 +1,24 @@
+{
+  "name": "scratch-app-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BADMalik/Scratch-App-Backend.git"
+  },
+  "author": "Bilal Malik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BADMalik/Scratch-App-Backend/issues"
+  },
+  "homepage": "https://github.com/BADMalik/Scratch-App-Backend#readme",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  }
+}
