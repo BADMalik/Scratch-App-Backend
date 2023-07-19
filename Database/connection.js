@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
+
 // const { MongoClient, ServerApiVersion } = require("mongodb");
 
-const uri =
-  "mongodb+srv://malikzaman133:360s360s@mongodbuniversitycluste.escrhbt.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.MONGO_USER_NAME}:${process.env.MONGO_USER_PASSWORD}@${process.env.DB_SOURCE}/?retryWrites=true&w=majority`;
 
 main().catch((err) => console.log(err));
 

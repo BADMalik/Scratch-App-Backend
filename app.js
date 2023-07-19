@@ -1,3 +1,4 @@
+import "dotenv/config";
 import db from "./Database/connection.js";
 import express from "express";
 import routes from "./routes/index.js";
