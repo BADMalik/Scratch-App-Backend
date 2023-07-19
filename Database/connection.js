@@ -1,18 +1,19 @@
 import mongoose from "mongoose";
-
-// const { MongoClient, ServerApiVersion } = require("mongodb");
-
 const uri = `mongodb+srv://${process.env.MONGO_USER_NAME}:${process.env.MONGO_USER_PASSWORD}@${process.env.DB_SOURCE}/?retryWrites=true&w=majority`;
 
 main().catch((err) => console.log(err));
-
+// After successful connection
 async function main() {
   try {
-    await mongoose.connect(uri);
-    console.log("Connected to the database");
+    await mongoose.connect(uri, {
+      dbName: "sample_airbnb",
+    });
+    let db = mongoose.connection;
+    let data = await db.db.listCollections().toArray();
+    console.log("Connected to the database", data);
   } catch (error) {
     console.log(error);
-    mongoose.close();
+    mongoose.connection.close();
   }
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
