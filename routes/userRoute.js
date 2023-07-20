@@ -5,21 +5,24 @@ import {
   updateUser as update,
   deleteUser as remove,
 } from "../controllers/userController/index.js";
+import { createUserMiddleWare } from "../Middlewares/userMiddleware/index.js";
+
+/**
+ * User Route Registration
+ */
 
 const router = Router();
 
-/* GET programming languages. */
 router.get("/", get);
 
 router.get("/:id", get);
 
-/* POST programming language */
-router.post("/", create);
+router.post("/", createUserMiddleWare, create);
 
 /* PUT programming language */
-router.put("/:id", update);
+// router.put("/:id", update);
 
 /* DELETE programming language */
-router.delete("/:id", remove);
+// router.delete("/:id", remove);
 
 export default router;

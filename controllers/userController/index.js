@@ -1,5 +1,13 @@
-export const createUser = (req, res) => {
-  res.send("createUser");
+import User from "../../models/user.js";
+
+export const createUser = async (req, res, next) => {
+  try {
+    let newUser = await User.create(req.body);
+    await newUser.validate();
+    res.send(newUser);
+  } catch (e) {
+    next(e.errors);
+  }
 };
 export const getUsers = (req, res) => {
   console.log("getUsers");

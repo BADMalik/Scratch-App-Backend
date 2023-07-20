@@ -9,8 +9,7 @@ async function main() {
       dbName: "sample_airbnb",
     });
     let db = mongoose.connection;
-    let data = await db.db.listCollections().toArray();
-    console.log("Connected to the database", data);
+    console.log("Connected to the database");
   } catch (error) {
     console.log(error);
     mongoose.connection.close();
