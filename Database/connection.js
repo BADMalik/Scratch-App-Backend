@@ -6,7 +6,7 @@ main().catch((err) => console.log(err));
 async function main() {
   try {
     await mongoose.connect(uri, {
-      dbName: "sample_airbnb",
+      dbName: process.env.DB_NAME,
     });
     let db = mongoose.connection;
     console.log("Connected to the database");
