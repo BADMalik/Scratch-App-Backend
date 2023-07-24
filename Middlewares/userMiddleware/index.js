@@ -7,8 +7,17 @@ const createUserRules = {
   address: "string|min:6|max:255",
 };
 
+const loginUserRules = {
+  email: "required|string|email|max:100",
+  password: "required|string|min:6",
+};
+
 const createUserMiddleWare = async (req, res, next) => {
   await validateRequest(createUserRules, req, res, next);
 };
 
-export { createUserMiddleWare };
+const loginUserMiddleWare = async (req, res, next) => {
+  await validateRequest(loginUserRules, req, res, next);
+};
+
+export { createUserMiddleWare, loginUserMiddleWare };

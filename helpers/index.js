@@ -16,7 +16,7 @@ const validator = async (body, rules, customMessages, callback) => {
 const validateRequest = async (rules, req, res, next) => {
   await validator(req.body, rules, {}, (err, status) => {
     if (!status) {
-      res.status(400).send({
+      res.status(401).send({
         success: false,
         status: status,
         message: "Validation failed",
@@ -34,7 +34,6 @@ const validateRequest = async (rules, req, res, next) => {
       errors: err.message,
       status: false,
     });
-    console.log(err);
   });
 };
 
@@ -51,13 +50,14 @@ const validateEmail = function (email) {
  * @param {*} _next
  */
 const errorResponse = (error, _req, res, _next) => {
-  console.error(error);
+  console.error({ error, log: error?.stack });
   res.status(500).send({
     success: false,
     status: false,
-    message: "Something Went Wrong",
-    data: error,
-    errors: error,
+    message: "Something Went Wrong!",
+    errors: [error.message] || [error] || [
+        Object?.values(error?.errors)[0]?.message,
+      ],
   });
 };
 

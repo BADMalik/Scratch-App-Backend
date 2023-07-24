@@ -1,14 +1,31 @@
 import User from "../../models/user.js";
+import jwt from "jsonwebtoken";
 
 export const createUser = async (req, res, next) => {
   try {
-    let newUser = await User.create(req.body);
-    await newUser.validate();
-    res.send(newUser);
+    res.send({
+      success: true,
+      message: "User Created Successfully",
+    });
   } catch (e) {
-    next(e.errors);
+    next(e);
   }
 };
+
+export const login = async (req, res, next) => {
+  try {
+    req.login(req.user, { session: false }, async (error) => {
+      if (error) return next(error);
+
+      const token = jwt.sign({ user: req.body }, process.env.JWT_SECRET);
+
+      return res.json({ token, user: req.user });
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
 export const getUsers = (req, res) => {
   console.log("getUsers");
   res.send("getUsers");

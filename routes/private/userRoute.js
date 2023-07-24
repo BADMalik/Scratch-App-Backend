@@ -4,8 +4,13 @@ import {
   createUser as create,
   updateUser as update,
   deleteUser as remove,
-} from "../controllers/userController/index.js";
-import { createUserMiddleWare } from "../Middlewares/userMiddleware/index.js";
+  login,
+} from "../../controllers/userController/index.js";
+import {
+  createUserMiddleWare,
+  loginUserMiddleWare,
+} from "../../Middlewares/userMiddleware/index.js";
+import passport from "../../Middlewares/authMiddleware/index.js";
 
 /**
  * User Route Registration
@@ -16,8 +21,6 @@ const router = Router();
 router.get("/", get);
 
 router.get("/:id", get);
-
-router.post("/", createUserMiddleWare, create);
 
 /* PUT programming language */
 // router.put("/:id", update);
