@@ -17,8 +17,9 @@ export const login = async (req, res, next) => {
     req.login(req.user, { session: false }, async (error) => {
       if (error) return next(error);
 
-      const token = jwt.sign({ user: req.body }, process.env.JWT_SECRET);
-
+      const token = jwt.sign({ user: req.body }, process.env.JWT_SECRET, {
+        expiresIn: "1d",
+      });
       return res.json({ token, user: req.user });
     });
   } catch (e) {
